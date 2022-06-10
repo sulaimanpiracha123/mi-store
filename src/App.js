@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Components/Navbar';
+import PreNavbar from './Components/PreNavbar';
+import {BrowserRouter as Router, Route} from "react-router-dom"
+import Slider from './Components/Slider';
+import data from "./data/data.json";
+import Offers from './Components/Offers';
+import Heading from './Components/Heading';
+import StarProduct from './Components/StarProduct';
+import HotAccessioriesMenue from './Components/HotAccessioriesMenue'
+import HotAccessiories from './Components/HotAccessiories';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+ <PreNavbar/>
+      <Navbar/>
+      <Slider start={data.banner.start}/>
+      <Offers offer={data.offer} />
+      <Heading text = "STAR PRODUCTS"/>
+      <StarProduct starproduct = {data.starProduct}/>
+      <Heading text = "HOT ACCESSORIES"/>
+      <HotAccessioriesMenue/>
+      <Route exact path='/music'>
+        <HotAccessiories music ={data.hotAccessories.music} musiccover = {data.hotAccessoriesCover.music}/>
+      </Route>
+      
+
+
+    </Router>
+
+     
   );
 }
 
